@@ -63,7 +63,24 @@ function single_event( $single )
   return $single;
 }
 
+/* ----------------------------------------------------- */
+/* Resumo com limite de palavras customizada */
+/* ----------------------------------------------------- */
+function the_excerpt_limit($limit) {
+    $excerpt = explode(' ', get_the_excerpt(), $limit);
+    if (count($excerpt)>=$limit) {
+        array_pop($excerpt);
+        $excerpt = implode(" ",$excerpt).'...';
+    } else {
+        $excerpt = implode(" ",$excerpt);
+    }
+        $excerpt = preg_replace('`\[[^\]]*\]`','',$excerpt);
+        echo $excerpt;
+}
+
 // cria o ctp
 require ('add_custom_post_type.php');
 // cria os campos para definição de data eventos
 require ('add_metabox_eventos.php');
+// cria os shortcode
+require ('shortcode_grid_eventos.php');

@@ -11,7 +11,7 @@ function add_metabox_dados_agencia() {
     'high' //Prioridade
   );
 }
-
+// callback que gera o metabox no posttype eventos
 function mb_dados_evento_cb() {
   global $post;
   // captura os dados para o value do formulário
@@ -23,7 +23,7 @@ function mb_dados_evento_cb() {
   // adc campos ao formulário
   require ('formulario_evento.php');
 }
-
+// salva os dados do evento adicionados no metabox
 function save_carga_evento(){
   global $post;
   if(!empty($_POST)){
@@ -33,13 +33,14 @@ function save_carga_evento(){
     $hora_inicial = $_POST['hora_inicial'];
     $hora_final   = $_POST['hora_final'];
     $endereco     = $_POST['endereco'];
-    // atualiza os dados
-    update_post_meta(  $post->ID, 'data_inicial', sanitize_text_field( $data_inicial ) );
-    update_post_meta(  $post->ID, 'data_final', sanitize_text_field( $data_final ) );
+    // atualiza os dados  date('Y-m-d', strtotime($date))
+
+
+    update_post_meta(  $post->ID, 'data_inicial',  $data_inicial  );
+    update_post_meta(  $post->ID, 'data_final',  $data_final  );
     update_post_meta(  $post->ID, 'hora_inicial', sanitize_text_field( $hora_inicial ) );
     update_post_meta(  $post->ID, 'hora_final', sanitize_text_field( $hora_final ) );
     update_post_meta(  $post->ID, 'endereco', sanitize_text_field( $endereco ) );
   }
 }
-
 add_action('save_post', 'save_carga_evento');

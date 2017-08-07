@@ -2,7 +2,7 @@
   <tr>
     <td>
         <label for="data_inicial"> <strong>Data Inicial:</strong> </label> <br>
-        <input type="text" name="data_inicial" id="data_inicial" value="<?php echo esc_attr( $data_inicial ) ?>" class="large-text data" />
+        <input type="text" name="data_inicial" id="data_inicial" value="<?php echo esc_attr( $data_inicial ) ?>" class="large-text data" required />
     </td>
     <td>
       <label for="data_final"> <strong>Data Final:</strong> </label> <br>
